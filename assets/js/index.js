@@ -110,87 +110,36 @@ function basicGetter(Event) {
 function basicOperation() {
 
     firstInputScreenValue = firstScreenView1.slice(0, (firstScreenView1.length - 1));//The screen value is saved as the first number value.
-
     totalScreenValue = screenView1.value; //At this point all numbers have been inputed.
-
     secondInputScreenValue = totalScreenValue.slice(firstScreenView1.length);
-
     firstInput = Number(firstInputScreenValue);
-
     secondInput = Number(secondInputScreenValue);
 
 
     if (basicOperator == '+') {
-
         solution = firstInput + secondInput;
-
-        screenView2.value = solution;
-
-        if (screenView2.value == "NaN") {
-
-            screenView2.value = "Error!";
-
-        } else {
-
-            screenView2.value = solution;
-
-        }
-
-
     } else if (basicOperator == '-') {
 
         solution = firstInput - secondInput;
-
-        screenView2.value = solution;
-
-        if (screenView2.value == "NaN") {
-
-            screenView2.value = "Error!";
-
-        } else {
-
-            screenView2.value = solution;
-
-        }
-
     } else if (basicOperator == '/') {
 
         solution = firstInput / secondInput;
-
-        screenView2.value = solution;
-
-        if (screenView2.value == "NaN") {
-
-            screenView2.value = "Error!";
-
-        } else {
-
-            screenView2.value = solution;
-
-        }
-
     } else if (basicOperator == '*') {
 
         solution = firstInput * secondInput;
-
-        screenView2.value = solution;
-
-        if (screenView2.value == "NaN") {
-
-            screenView2.value = "Error!";
-
-        } else {
-
-            screenView2.value = solution;
-
-        }
     }
-
     return solution;
-
 };
 
 
+function outputSolutionToScreen(solution) {
+    if (solution.toString().includes("NaN")) {
+        screenView2.value = "Error!";
+    }
+    else {
+        screenView2.value = solution;
+    }
+}
 /* 
 
 SPECIAL
@@ -204,9 +153,7 @@ OPERATIONS
 let special4 = document.querySelectorAll(".special-4-operator");
 
 for (let i = 0; i < special4.length; i++) {
-
     special4[i].addEventListener("click", special4Getter);
-
 };
 
 
@@ -214,9 +161,7 @@ for (let i = 0; i < special4.length; i++) {
 // Once JS notice a click on the special4-operator, the "special4_Operation" function below is executed.
 
 function special4Getter(Event) {
-
     special4_Operator = Event.target.value; //The value of the special operator is stored.
-
     screenView1.value = special4_Operator.slice(0, 3) + " " + screenView1.value;
 }
 
@@ -224,14 +169,9 @@ function special4Getter(Event) {
 function special4_Operation() {
 
     if (special4_Operator == "tan(x)") {
-
         executableInput = screenView1.value.slice(4);
-
         executableValue = Number(executableInput);
-
         solution = Math.tan(executableValue * Math.PI / 180);
-
-        screenView2.value = solution;
 
     } else if (special4_Operator == "sin(x)") {
 
@@ -241,8 +181,6 @@ function special4_Operation() {
 
         solution = Math.sin(executableValue * Math.PI / 180);
 
-        screenView2.value = solution;
-
     } else if (special4_Operator == "cos(x)") {
 
         executableInput = screenView1.value.slice(4);
@@ -251,8 +189,6 @@ function special4_Operation() {
 
         solution = Math.cos(executableValue * Math.PI / 180);
 
-        screenView2.value = solution;
-
     } else if (special4_Operator == "Log(x)") {
 
         executableInput = screenView1.value.slice(4);
@@ -260,8 +196,6 @@ function special4_Operation() {
         executableValue = Number(executableInput);
 
         solution = Math.log10(executableValue);
-
-        screenView2.value = solution;
     }
 
     return solution;
@@ -286,24 +220,16 @@ specialInverse.addEventListener("click", specialInverseGetter);
 // Once JS notice a click on the special-Inverse-operator, the "specialInverseGetter" function below is executed.
 
 function specialInverseGetter(Event) {
-
     specialInverse = Event.target.value; //The value of the special operator is stored.
-
     screenView1.value = "1/" + screenView1.value;
 }
 
 function specialInverseOperation() {
 
     executableInput = screenView1.value.slice(2);
-
     executableValue = Number(executableInput);
-
     solution = (1 / executableValue);
-
-    screenView2.value = solution;
-
     return solution;
-
 }
 
 
@@ -332,15 +258,9 @@ function specialSQRTGetter(Event) {
 }
 
 function specialSQRTOperation() {
-
     executableInput = screenView1.value.slice(1);
-
     executableValue = Number(executableInput);
-
     solution = Math.sqrt(executableValue);
-
-    screenView2.value = solution;
-
     return solution;
 
 }
@@ -390,15 +310,9 @@ function specialExpOperation() {
     executableInput2 = screenView1.value.slice(firstExecutable.length);
 
     executableValue1 = Number(executableInput1);
-
     executableValue2 = Number(executableInput2);
-
     solution = Math.pow(executableValue1, executableValue2);
-
-    screenView2.value = solution;
-
     return solution;
-
 }
 
 
@@ -422,11 +336,8 @@ specialPercent.addEventListener("click", specialPercentGetter);
 function specialPercentGetter(Event) {
 
     specialPercent = Event.target.value; //The value of the special operator is stored.
-
     screenView1.value = screenView1.value + "%";
-
     firstExecutable = screenView1.value;
-
 }
 
 function specialPercentageOperation() {
@@ -440,11 +351,7 @@ function specialPercentageOperation() {
     executableValue2 = Number(executableInput2);
 
     solution = (executableValue1 / 100) * executableValue2;
-
-    screenView2.value = solution;
-
     return solution;
-
 }
 
 
@@ -466,18 +373,12 @@ specialFactorial.addEventListener("click", specialFactorialGetter);
 // Once JS notice a click on the special-factorial-operator, the "specialFactorialGetter" function below is executed.
 
 function specialFactorialGetter(Event) {
-
     specialFactorial = Event.target.value; //The value of the special operator is stored.
-
     screenView1.value = screenView1.value + "!";
-
     firstExecutable = screenView1.value;
     console.log(firstExecutable);
-
     executableInput = firstExecutable.slice(0, (firstExecutable.length - 1));
-
     executableValue = Number(executableInput);
-
 }
 
 
@@ -497,11 +398,7 @@ function specialFactorialOperation() {
 
         solution = factorial();
     }
-
-    screenView2.value = solution;
-
     return solution;
-
 }
 
 
@@ -518,9 +415,7 @@ let signToggler = document.querySelector(".plus-minus-toggler");
 signToggler.addEventListener("click", toggleSign);
 
 function toggleSign() {
-
     screenView1.textContent.toggle()
-
 }
 
 
@@ -544,31 +439,27 @@ requester.addEventListener("click", calcSolution);
 function calcSolution() {
 
     if (basicOperatorArray.includes(basicOperator)) {
-        basicOperation();
+        let res = basicOperation();
+        outputSolutionToScreen(res);
     }
     else if (specialTrigAndLogArray.includes(special4_Operator)) {
 
-        special4_Operation();
+        outputSolutionToScreen(special4_Operation());
 
     } else if (specialInverse == "⅟x") {
 
-        specialInverseOperation();
+        outputSolutionToScreen(specialInverseOperation());
 
     } else if (specialSQRT == "√x") {
 
-        specialSQRTOperation();
+        outputSolutionToScreen(specialSQRTOperation());
 
     } else if (specialExp == "exp") {
-
-        specialExpOperation();
-
+        outputSolutionToScreen(specialExpOperation());
     } else if (specialPercent == "%") {
-
-        specialPercentageOperation();
-
+        outputSolutionToScreen(specialPercentageOperation());
     } else if (specialFactorial == "!") {
-
-        specialFactorialOperation();
+        outputSolutionToScreen(specialFactorialOperation());
 
     }
 };
