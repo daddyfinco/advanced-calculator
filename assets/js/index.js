@@ -2,9 +2,37 @@
 
 // Adding button click sound to my calculator
 
-let sound = new Audio("Assets/Sounds/pin-pad-click-sound.wav");
-
+let sound = new Audio("assets/sounds/pin-pad-click-sound.wav");
 let buttonClick = document.querySelectorAll(".all-btn");
+// Declaring variable to be used in my calculator
+let basicOperator;
+
+let executableValue;
+
+let executableInput;
+
+let special4_Operator;
+
+let specialTrigAndLogArray = ["Log(x)", "sin(x)", "cos(x)", "tan(x)"];
+
+let specialPercentAndExpArray = ["%", "exp"];
+
+let basicOperatorArray = ["+", "-", "*", "/"];
+
+let solution;
+
+let firstScreenView1;
+
+let totalScreenValue;
+
+let firstInput;
+
+let secondInput;
+
+let firstInputScreenValue;
+
+let secondInputScreenValue;
+
 
 function clickSound() {
     sound.play()
@@ -52,37 +80,6 @@ function backspace() { screenView1.value = screenView1.value.slice(0, -1); }
 document.querySelector(".clear").addEventListener("click", clearScreen);
 
 function clearScreen() { screenView1.value = ""; screenView2.value = ""; }
-
-
-// Declaring variable to be used in my calculator
-let basicOperator;
-
-let executableValue;
-
-let executableInput;
-
-let special4_Operator;
-
-let specialTrigAndLogArray = ["Log(x)", "sin(x)", "cos(x)", "tan(x)"];
-
-let specialPercentAndExpArray = ["%", "exp"];
-
-let basicOperatorArray = ["+", "-", "*", "/"];
-
-let solution;
-
-let firstScreenView1;
-
-let totalScreenValue;
-
-let firstInput;
-
-let secondInput;
-
-let firstInputScreenValue;
-
-let secondInputScreenValue;
-
 
 
 /*
@@ -442,7 +439,7 @@ function specialPercentageOperation() {
 
     executableValue2 = Number(executableInput2);
 
-    solution = (executableValue1 / executableValue2) * 100;
+    solution = (executableValue1 / 100) * executableValue2;
 
     screenView2.value = solution;
 
@@ -547,10 +544,9 @@ requester.addEventListener("click", calcSolution);
 function calcSolution() {
 
     if (basicOperatorArray.includes(basicOperator)) {
-
         basicOperation();
-
-    } else if (specialTrigAndLogArray.includes(special4_Operator)) {
+    }
+    else if (specialTrigAndLogArray.includes(special4_Operator)) {
 
         special4_Operation();
 
