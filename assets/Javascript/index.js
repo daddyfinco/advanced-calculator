@@ -486,24 +486,17 @@ function specialFactorialGetter(Event) {
 
 
 function specialFactorialOperation() {
+    let fact = executableValue;
 
+    for (let i = executableValue; i > 1; i--) {
 
-    for (let i = executableValue; i > 0; i--) {
+        fact = executableValue *= (n - 1);
 
-        function factorial(n) {
+        return fact;
 
-            executableValue *= (n - 1);
-
-            return executableValue;
-
-        };
-
-        solution = factorial();
     }
 
-    screenView2.value = solution;
-
-    return solution;
+    screenView2.value = fact;
 
 }
 
@@ -521,7 +514,7 @@ let signToggler = document.querySelector(".plus-minus-toggler");
 signToggler.addEventListener("click", toggleSign);
 
 function toggleSign() {
-  screenView2.value = screenView2.value * (-1);
+    screenView2.value = screenView2.value * (-1);
 };
 
 
