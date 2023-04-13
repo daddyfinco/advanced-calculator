@@ -1,15 +1,21 @@
 "use strict";
 
 // Declaring variable to be used in my calculator
+let clickedInput;
 let basicOperator;
-let executableValue;
+let specialFactorial;
+let specialPercent;
 let specialFourOperator;
-let operatorArray = ["+", "-", "*", "/", "Log(x)", "sin(x)", "cos(x)", "tan(x)"];
+let specialInverse;
+let specialSQRT;
+let specialExp;
+let executableValue;
 let solution;
 let firstInput;
 let secondInput;
 let firstInputScreenValue;
 let secondInputScreenValue;
+let operatorArray = ["+", "-", "*", "/", "Log(x)", "sin(x)", "cos(x)", "tan(x)"];
 let click = document.querySelectorAll(".btn");
 let basic = document.querySelectorAll(".basic-operator");
 let specialFour = document.querySelectorAll(".special-4-operator");
@@ -17,7 +23,6 @@ let sound = new Audio("Assets/Sounds/pin-pad-click-sound.wav");
 let buttonClick = document.querySelectorAll(".all-btn");
 let screenViewOneElement = document.querySelector("input#screen-1");
 let screenViewTwoElement = document.querySelector("input#screen-2");
-let clickedInput;
 
 // Adding button click sound to my calculator
 for (let i = 0; i < buttonClick.length; i++) {
@@ -65,12 +70,12 @@ for (let i = 0; i < basic.length; i++) {
 // Once JS notice a click on the basic-operator, the "basicOperation" function below is executed.
 function basicGetter(Event) {
   basicOperator = Event.target.value; //The value of the clicked basic button is stored and added to screen
+  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1)); //The screen value is saved as the first number value.
 };
 
-firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1)); //The screen value is saved as the first number value.
 
 function basicOperation() {
-  secondInputScreenValue = screenViewOneElement.value.slice(screenViewOneElement.value.length);
+  secondInputScreenValue = screenViewOneElement.value.slice(firstInputScreenValue.length + 1);
   firstInput = Number(firstInputScreenValue);
   secondInput = Number(secondInputScreenValue);
 
@@ -87,7 +92,6 @@ function basicOperation() {
     solution = firstInput * secondInput;
     screenViewTwoElement.value = solution;
   }
-  return solution;
 };
 
 
@@ -122,9 +126,7 @@ function specialFourCalculation() {
     solution = Math.log10(executableValue);
     screenViewTwoElement.value = solution;
   }
-  return solution;
 };
-
 
 /*
 SPECIAL
@@ -141,12 +143,9 @@ function specialInverseGetter(Event) {
 }
 
 function specialInverseOperation() {
-  executableValue = Number(screenViewOneElement.value.slice(2););
-  solution = (1 / executableValue);
-  screenViewTwoElement.value = solution;
-  return solution;
-}
-
+  executableValue = Number(screenViewOneElement.value.slice(2));
+  screenViewTwoElement.value = (1 / executableValue);
+};
 
 /*
 SPECIAL
@@ -160,15 +159,12 @@ document.querySelector(".special-sqrt-operator").addEventListener("click", speci
 function specialSQRTGetter(Event) {
   specialSQRT = Event.target.value; //The value of the special operator is stored.
   screenViewOneElement.value = "√" + screenViewOneElement.value;
-}
+};
 
 function specialSQRTOperation() {
   executableValue = Number(screenViewOneElement.value.slice(1));
-  solution = Math.sqrt(executableValue);
-  screenViewTwoElement.value = solution;
-  return solution;
-}
-
+  screenViewTwoElement.value = Math.sqrt(executableValue);
+};
 
 /*
 SPECIAL
@@ -182,19 +178,15 @@ document.querySelector(".special-exp-operator").addEventListener("click", specia
 function specialExpGetter(Event) {
   specialExp = Event.target.value; //The value of the special operator is stored.
   screenViewOneElement.value = screenViewOneElement.value + "ˆ";
-  return screenViewOneElement.value;
+  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1));
 };
 
 function specialExpOperation() {
-  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1));
-  secondInputScreenValue = screenViewOneElement.value.slice(screenViewOneElement.value.length);
+  secondInputScreenValue = screenViewOneElement.value.slice(firstInputScreenValue.length + 1);
   firstInput = Number(firstInputScreenValue);
   secondInput = Number(secondInputScreenValue);
-  solution = (firstInput ** secondInput);
-  screenViewTwoElement.value = solution;
-  return solution;
+  screenViewTwoElement.value = (firstInput ** secondInput);
 };
-
 
 /*
 SPECIAL
@@ -208,17 +200,14 @@ document.querySelector(".special-percentage-operator").addEventListener("click",
 function specialPercentGetter(Event) {
   specialPercent = Event.target.value; //The value of the special operator is stored.
   screenViewOneElement.value = screenViewOneElement.value + "%";
-  return screenViewOneElement.value;
+  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1));
 };
 
 function specialPercentageOperation() {
-  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1));
-  secondInputScreenValue = screenViewOneElement.value.slice(screenViewOneElement.value.length);
+  secondInputScreenValue = screenViewOneElement.value.slice(firstInputScreenValue.length + 1);
   firstInput = Number(firstInputScreenValue);
   secondInput = Number(secondInputScreenValue);
-  solution = (firstInput / 100) * secondInput;
-  screenViewTwoElement.value = solution;
-  return solution;
+  screenViewTwoElement.value = (firstInput / 100) * secondInput;
 };
 
 /*
@@ -232,43 +221,32 @@ document.querySelector(".special-factorial-operator").addEventListener("click", 
 // Once JS notice a click on the special-factorial-operator, the "specialFactorialGetter" function below is executed.
 function specialFactorialGetter(Event) {
   specialFactorial = Event.target.value; //The value of the special operator is stored.
-  console.log(specialFactorial);
   screenViewOneElement.value = screenViewOneElement.value + "!";
-  return screenViewOneElement.value;
+  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1));
 };
 
-
 function specialFactorialOperation(firstInput) {
-  firstInputScreenValue = screenViewOneElement.value.slice(0, (screenViewOneElement.value.length - 1));
   firstInput = Number(firstInputScreenValue);
   let factorial = firstInput;
   for (let i = firstInput; i > 1; i--) {
-    factorial = factorial * (i - 1);
-    return factorial;
+    factorial *= (i - 1);
   };
   screenViewTwoElement.value = factorial;
 };
 
-
 /*
-
 PLUS
 MINUS
 TOGGLER
-
 */
 
-let signToggler = document.querySelector(".plus-minus-toggler");
-
-signToggler.addEventListener("click", toggleSign);
+document.querySelector(".plus-minus-toggler").addEventListener("click", toggleSign);
 
 function toggleSign() {
-  screenViewTwoElement.value = screenViewTwoElement.value * (-1);
+  screenViewTwoElement.value = Number(screenViewTwoElement.value) * (-1);
 };
 
-
 /*
-
 PRESENTING
 THE
 RESULT
@@ -276,9 +254,7 @@ WITH
 THE
 EQUAL
 SIGN
-
 */
-
 
 document.querySelector(".equal").addEventListener("click", calcSolution);
 
@@ -302,23 +278,13 @@ function calcSolution() {
   } else {
     screenViewTwoElement.value = solution;
   }
+  return solution;
 };
-
-// The above line add an event listener to the equal button. when clicked, it executes the,
-// "calSolution" funtion above. Here it is presumed that the equal sign will be clicked after
-// all input value has been entered in the calculator for both the basic operations and special operations.
-
 
 // Toggling between dark and light mode of the calculator
 
-let calcMode = document.querySelector(".calculator");
-
-let toggleSwitch = document.getElementById("switch-inner-border");
+document.getElementById("switch-inner-border").addEventListener("click", switchMode);
 
 function switchMode() {
-
-  calcMode.classList.toggle("lightmode");
-
-}
-
-toggleSwitch.addEventListener("click", switchMode);
+  document.querySelector(".calculator").classList.toggle("lightmode");
+};
