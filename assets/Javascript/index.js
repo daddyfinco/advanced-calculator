@@ -3,7 +3,6 @@
 // Declaring variable to be used in my calculator
 let operatorValue;
 let numberValue;
-let basicOperator;
 let solution;
 let firstInput;
 let secondInput;
@@ -34,7 +33,6 @@ document.querySelector(".clear").addEventListener("click", () => {
 });
 
 // Adding display to my calculator
-
 for (let i = 0; i < numeric_btn.length; i++) {
   numeric_btn[i].addEventListener("click", (event) => {
     numberValue = event.target.value;
@@ -131,11 +129,7 @@ for (let i = 0; i < operator_btn.length; i++) {
   });
 };
 
-/*
-BASIC
-OPERATIONS
-*/
-
+/* BASIC OPERATIONS */
 let basicOperation = () => {
   secondInputValue = view1.value.slice(firstInputValue.length + 1);
   firstInput = Number(firstInputValue);
@@ -160,13 +154,7 @@ let basicOperation = () => {
   view2.value = solution;
 };
 
-/*
-TRIGONOMETRY
-AND
-LOGARITHM
-OPERATIONS
-*/
-
+/* TRIGONOMETRY AND LOGARITHM OPERATIONS */
 let trigAndLogOperation = () => {
   firstInput = Number(firstInputValue);
   switch (operatorValue) {
@@ -191,36 +179,21 @@ let trigAndLogOperation = () => {
   };
 };
 
-/*
-SPECIAL
-INVERSE
-OPERATIONS
-*/
-
+/* SPECIAL INVERSE OPERATIONS */
 let inverseOperation = () => {
   firstInput = Number(firstInputValue);
   solution = 1 / firstInput;
   view2.value = solution;
 };
 
-/*
-SPECIAL
-SQUAREROOT
-OPERATIONS
-*/
-
+/* SPECIAL SQUAREROOT OPERATIONS */
 let squareRootOperation = () => {
   firstInput = Number(firstInputValue);
   solution = Math.sqrt(firstInput);
   view2.value = solution;
 };
 
-/*
-SPECIAL
-EXPONENTIAL
-OPERATIONS
-*/
-
+/* SPECIAL EXPONENTIAL OPERATIONS */
 let exponentialOperation = () => {
   secondInputValue = view1.value.slice(firstInputValue.length + 1);
   firstInput = Number(firstInputValue);
@@ -228,12 +201,7 @@ let exponentialOperation = () => {
   view2.value = firstInput ** secondInput;
 };
 
-/*
-SPECIAL
-PERCENTAGE
-OPERATIONS
-*/
-
+/* SPECIAL PERCENTAGE OPERATIONS */
 let percentageOperation = () => {
   secondInputValue = view1.value.slice(firstInputValue.length + 1);
   firstInput = Number(firstInputValue);
@@ -242,12 +210,7 @@ let percentageOperation = () => {
   solution = view2.value;
 };
 
-/*
-SPECIAL
-FACTORIAL
-OPERATIONS
-*/
-
+/* SPECIAL FACTORIAL OPERATIONS */
 let factorialOperation = (firstInput) => {
   firstInput = Number(firstInputValue);
   let factorial = firstInput;
@@ -257,26 +220,7 @@ let factorialOperation = (firstInput) => {
   view2.value = factorial;
 };
 
-/*
-PLUS
-MINUS
-TOGGLER
-*/
-
-document.querySelector(".plus-minus-toggler").addEventListener("click", function () {
-  view2.value = Number(view2.value) * (-1);
-});
-
-/*
-PRESENTING
-THE
-RESULT
-WITH
-THE
-EQUAL
-SIGN
-*/
-
+/* PRESENTING THE RESULT WITH THE EQUAL SIGN */
 document.querySelector(".equal").addEventListener("click", () => {
   switch (operatorValue) {
     case "+":
@@ -308,6 +252,11 @@ document.querySelector(".equal").addEventListener("click", () => {
       break;
   }
   return solution;
+});
+
+/* PLUS-MINUS TOGGLER */
+document.querySelector(".sign-toggler").addEventListener("click", () => {
+  view2.value = Number(view2.value) * (-1);
 });
 
 // Toggling between dark and light mode of the calculator
