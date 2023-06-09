@@ -256,7 +256,11 @@ document.querySelector(".equal").addEventListener("click", () => {
 
 /* PLUS-MINUS TOGGLER */
 document.querySelector(".sign-toggler").addEventListener("click", () => {
-  view2.value = Number(view2.value) * (-1);
+  if (!view2.value == "") {
+    view2.value = Number(view2.value) * (-1);
+  } else {
+    view1.value = Number(view1.value) * (-1);
+  }
 });
 
 // Toggling between dark and light mode of the calculator
