@@ -85,11 +85,11 @@ document.querySelector('.clear').addEventListener('click', allClear);
 // ADDING DISPLAY TO MY CALCULATOR
 
 //Adding clicked input to the calculator display
-for (let i = 0; i < numeric_btn.length; i++) {
-  numeric_btn[i].addEventListener('click', (event) => {
+numeric_btn.forEach((btn) => {
+  btn.addEventListener('click', (event) => {
     view1.value += event.target.value;
   });
-}
+});
 
 for (let i = 0; i < operator_btn.length; i++) {
   operator_btn[i].addEventListener('click', (event) => {
@@ -101,36 +101,36 @@ for (let i = 0; i < operator_btn.length; i++) {
         case '*':
         case '/':
           view1.value = view2.value + operatorValue;
-          firstInputValue = view1.value.slice(0, view1.value.length - 1);
           view2.value = '';
+          firstInputValue = view1.value.slice(0, view1.value.length - 1);
           break;
         case 'Log(x)':
         case 'sin(x)':
         case 'cos(x)':
         case 'tan(x)':
           view1.value = operatorValue.slice(0, 3) + ' ' + view2.value;
-          firstInputValue = view1.value.slice(4);
           view2.value = '';
+          firstInputValue = view1.value.slice(4);
           break;
         case '⅟x':
           view1.value = '1/' + view2.value;
-          firstInputValue = view1.value.slice(2);
           view2.value = '';
+          firstInputValue = view1.value.slice(2);
           break;
         case '√x':
           view1.value = '√' + view2.value;
-          firstInputValue = view1.value.slice(1);
           view2.value = '';
+          firstInputValue = view1.value.slice(1);
           break;
         case 'exp':
           view1.value = view2.value + '^';
-          firstInputValue = view1.value.slice(0, view1.value.length - 1);
           view2.value = '';
+          firstInputValue = view1.value.slice(0, view1.value.length - 1);
           break;
         case '%':
           view1.value = view2.value + '%';
-          firstInputValue = view1.value.slice(0, view1.value.length - 1);
           view2.value = '';
+          firstInputValue = view1.value.slice(0, view1.value.length - 1);
           break;
         case 'x!':
           view1.value = view2.value + '!';
@@ -305,8 +305,9 @@ document.querySelector('.equal').addEventListener('click', () => {
 
 /* PLUS-MINUS TOGGLER */
 document.querySelector('.sign-toggler').addEventListener('click', () => {
-  if (!view2.value == '') view2.value = Number(view2.value) * -1;
-  if (view2.value == '') view1.value = Number(view1.value) * -1;
+  !view2.value == ''
+    ? (view2.value = Number(view2.value) * -1)
+    : (view1.value = Number(view1.value) * -1);
 });
 
 // Toggling between dark and light mode of the calculator
