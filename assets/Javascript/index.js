@@ -1,14 +1,18 @@
 "use strict";
 
+//JUST TESTING
+
+let numSeq = [];
+let opSeq = [];
+
 // Declaring variable to be used in my calculator
 let operatorValue;
-let numberValue;
 let solution;
 let firstInput;
 let secondInput;
 let firstInputValue;
 let secondInputValue;
-let operator_array = ["+", "-", "*", "/", "Log(x)", "sin(x)", "cos(x)", "tan(x)", "⅟x", "√x", "exp", "%", "x!"];
+let operator_array = ["+", "-", "*", "/", "Log(x)", "sin(x)", "cos(x)", "tan(x)", "⅟x", "√x", "exp", "%", "x!", "!"];
 let operator_btn = document.querySelectorAll(".op-btn");
 let numeric_btn = document.querySelectorAll(".numeric");
 let sound = new Audio("Assets/sounds/pin-pad-click-sound.wav");
@@ -23,22 +27,36 @@ for (let i = 0; i < document.querySelectorAll(".all-btn").length; i++) {
 };
 
 //Adding "DE = Backspace" function to my calculator
-document.querySelector(".delete").addEventListener("click", () => {
+let backSpace = () => {
   view1.value = view1.value.slice(0, -1);
+};
+
+document.querySelector(".delete").addEventListener("click", backSpace);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Backspace") { sound.play(); backSpace(); }
+  if (e.key === "Delete") { sound.play(); allClear(); }
+  if (!isNaN(e.key)) { sound.play(); view1.value += e.key; }
+  if (operator_array.includes(e.key)) { sound.play(); view1.value += e.key; }
 });
 
 //Adding the "AC = All Clear" function button to my calculator
-document.querySelector(".clear").addEventListener("click", () => {
-  view1.value = ""; view2.value = "";
-});
+let allClear = () => {
+  view1.value = "";
+  view2.value = "";
+};
 
-// Adding display to my calculator
+document.querySelector(".clear").addEventListener("click", allClear);
+
+// ADDING DISPLAY TO MY CALCULATOR
+
+//Adding click input to the calculator display
 for (let i = 0; i < numeric_btn.length; i++) {
   numeric_btn[i].addEventListener("click", (event) => {
-    numberValue = event.target.value;
-    view1.value += numberValue;
+    view1.value += event.target.value;
   });
 };
+
 
 for (let i = 0; i < operator_btn.length; i++) {
   operator_btn[i].addEventListener("click", (event) => {
@@ -211,10 +229,9 @@ let percentageOperation = () => {
 };
 
 /* SPECIAL FACTORIAL OPERATIONS */
-let factorialOperation = (firstInput) => {
-  firstInput = Number(firstInputValue);
-  let factorial = firstInput;
-  for (let i = firstInput; i > 1; i--) {
+let factorialOperation = () => {
+  let factorial = Number(firstInputValue);
+  for (let i = factorial; i > 1; i--) {
     factorial *= (i - 1);
   };
   view2.value = factorial;
@@ -261,6 +278,6 @@ document.querySelector(".sign-toggler").addEventListener("click", () => {
 });
 
 // Toggling between dark and light mode of the calculator
-document.querySelector("#switch-inner-border").addEventListener("click", function () {
+document.querySelector("#switch-inner-border").addEventListener("click", () => {
   document.querySelector(".calculator").classList.toggle("lightmode");
 });
