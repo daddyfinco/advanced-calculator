@@ -1,10 +1,5 @@
 'use strict';
 
-//JUST TESTING
-
-let numSeq = [];
-let opSeq = [];
-
 // Declaring variable to be used in my calculator
 let operatorValue;
 let solution;
