@@ -18,151 +18,130 @@
             <form>
 
                 <!-- theme toggler design -->
-                <div id="switch-outer-border">
-                    <input type="button" value="" id="switch-inner-border"></input>
+                <div id="mode-switcher">
                 </div>
 
 
                 <!-- Calculator Display area -->
-                <div class="display">
-                    <input type="text" value="" name="display" id="screen-1" disabled>
-                </div>
-
-                <div class="display">
-                    <input type="text" value="" name="display" id="screen-2" disabled>
+                <div class="display-container">
+                    <div class="display">
+                        <input type="text" value="" name="display" id="screen-1" disabled>
+                    </div>
+                    <div class="display">
+                        <input type="text" value="" name="display" id="screen-2" disabled>
+                    </div>
                 </div>
 
 
                 <!-- First Button Row -->
-                <div class="active">
-                    <input type="button" value="AC" class="all-btn clear button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="DE" class="all-btn delete button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="%" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="exp" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="√x" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="/" class="all-btn op-btn button-color">
-                </div>
-
-
-                <!-- Second Button Row -->
-                <div class="active">
-                    <input type="button" value="7" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="8" class="all-btn numeric">
-                </div class="active">
-
-                <div class="active">
-                    <input type="button" value="9" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="Log(x)" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="sin(x)" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="*" class="all-btn op-btn button-color">
-                </div>
-
-
-                <!-- Third Button Row -->
-                <div class="active">
-                    <input type="button" value="4" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="5" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="6" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="x!" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="cos(x)" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="-" class="all-btn op-btn button-color">
-                </div>
-
-
-                <!-- Fourth Button Row -->
-                <div class="active">
-                    <input type="button" value="1" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="2" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="3" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="⅟x" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="tan(x)" class="all-btn op-btn button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="+" class="all-btn op-btn button-color">
-                </div>
-
-
-                <!-- Fifth Button Row -->
-                <div class="active">
-                    <input type="button" value="00" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="0" class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="." class="all-btn numeric">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="+/-" class="all-btn sign-toggler button-color">
-                </div>
-
-                <div class="active">
-                    <input type="button" value="=" class="all-btn equal button-color">
+                <div class="button-container">
+                    <div class="first-row">
+                        <div class="active clear">
+                            <input type="button" value="AC" class="btn accent-color">
+                        </div>
+                        <div class="active delete">
+                            <input type="button" value="DE" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="%" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="exp" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="√x" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="/" class="btn accent-color">
+                        </div>
+                    </div>
+                    <!-- Second Button Row -->
+                    <div class="second-row">
+                        <div class="active numeric">
+                            <input type="button" value="7" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="8" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="9" class="btn">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="Log(x)" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="sin(x)" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="*" class="btn accent-color">
+                        </div>
+                    </div>
+                    <!-- Third Button Row -->
+                    <div class="third-row">
+                        <div class="active numeric">
+                            <input type="button" value="4" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="5" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="6" class="btn">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="x!" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="cos(x)" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="-" class="btn accent-color">
+                        </div>
+                    </div>
+                    <!-- Fourth Button Row -->
+                    <div class="fourth-row">
+                        <div class="active numeric">
+                            <input type="button" value="1" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="2" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="3" class="btn">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="⅟x" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="tan(x)" class="btn accent-color">
+                        </div>
+                        <div class="active operator">
+                            <input type="button" value="+" class="btn accent-color">
+                        </div>
+                    </div>
+                    <!-- Fifth Button Row -->
+                    <div class="fifth-row">
+                        <div class="active numeric">
+                            <input type="button" value="00" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="0" class="btn">
+                        </div>
+                        <div class="active numeric">
+                            <input type="button" value="." class="btn">
+                        </div>
+                        <div class="active sign-toggler">
+                            <input type="button" value="+/-" class="btn accent-color">
+                        </div>
+                        <div class="active equal">
+                            <input type="button" value="=" class="btn accent-color">
+                        </div>
+                    </div>
                 </div>
 
             </form>
         </div>
     </div>
-    <!-- <script src="assets/Javascript/calc_functions.js" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> -->
+
     <script src="assets/Javascript/index.js" charset="utf-8"></script>
 </body>
 

@@ -28,21 +28,15 @@ let operator_array = [
   'x!',
   '!',
 ];
-let operator_btn = document.querySelectorAll('.op-btn');
-let numeric_btn = document.querySelectorAll('.numeric');
-let sound = new Audio('Assets/sounds/pin-pad-click-sound.wav');
-let view1 = document.querySelector('#screen-1');
-let view2 = document.querySelector('#screen-2');
-const allBtn = document.querySelectorAll('.all-btn');
+const btnDivs = document.querySelectorAll('.active');
+const buttons = document.querySelectorAll('.btn');
+const operator_btn = document.querySelectorAll('.active.operator');
+const numeric_btn = document.querySelectorAll('.active.numeric');
+const sound = new Audio('Assets/sounds/pin-pad-click-sound.wav');
+const view1 = document.querySelector('#screen-1');
+const view2 = document.querySelector('#screen-2');
 
-// Adding button click sound to my calculator
-// for (let i = 0; i < document.querySelectorAll(".all-btn").length; i++) {
-//   document.querySelectorAll(".all-btn")[i].addEventListener("click", () => {
-//     sound.play()
-//   });
-// };
-
-allBtn.forEach((btn) => {
+btnDivs.forEach((btn) => {
   btn.addEventListener('click', () => {
     sound.play();
   });
@@ -53,7 +47,7 @@ let backSpace = () => {
   view1.value = view1.value.slice(0, -1);
 };
 
-document.querySelector('.delete').addEventListener('click', backSpace);
+document.querySelector('.active.delete').addEventListener('click', backSpace);
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Backspace') {
@@ -68,9 +62,16 @@ document.addEventListener('keydown', (e) => {
     sound.play();
     view1.value += e.key;
   }
-  if (operator_array.includes(e.key)) {
-    sound.play();
-    view1.value += e.key;
+  if (isNaN(e.key)) {
+    switch (e.key) {
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        sound.play();
+        view1.value += e.key;
+        break;
+    }
   }
 });
 
@@ -80,20 +81,20 @@ let allClear = () => {
   view2.value = '';
 };
 
-document.querySelector('.clear').addEventListener('click', allClear);
+document.querySelector('.active.clear').addEventListener('click', allClear);
 
 // ADDING DISPLAY TO MY CALCULATOR
 
 //Adding clicked input to the calculator display
 numeric_btn.forEach((btn) => {
-  btn.addEventListener('click', (event) => {
-    view1.value += event.target.value;
+  btn.addEventListener('click', () => {
+    view1.value += btn.firstElementChild.value;
   });
 });
 
-for (let i = 0; i < operator_btn.length; i++) {
-  operator_btn[i].addEventListener('click', (event) => {
-    operatorValue = event.target.value;
+operator_btn.forEach((operator) => {
+  operator.addEventListener('click', () => {
+    operatorValue = operator.firstElementChild.value;
     if (!view2.value == '') {
       switch (operatorValue) {
         case '+':
@@ -177,7 +178,7 @@ for (let i = 0; i < operator_btn.length; i++) {
       }
     }
   });
-}
+});
 
 /* BASIC OPERATIONS */
 let basicOperation = () => {
@@ -270,7 +271,7 @@ let factorialOperation = () => {
 };
 
 /* PRESENTING THE RESULT WITH THE EQUAL SIGN */
-document.querySelector('.equal').addEventListener('click', () => {
+document.querySelector('.active.equal').addEventListener('click', () => {
   switch (operatorValue) {
     case '+':
     case '-':
@@ -304,13 +305,13 @@ document.querySelector('.equal').addEventListener('click', () => {
 });
 
 /* PLUS-MINUS TOGGLER */
-document.querySelector('.sign-toggler').addEventListener('click', () => {
+document.querySelector('.active.sign-toggler').addEventListener('click', () => {
   !view2.value == ''
     ? (view2.value = Number(view2.value) * -1)
     : (view1.value = Number(view1.value) * -1);
 });
 
 // Toggling between dark and light mode of the calculator
-document.querySelector('#switch-inner-border').addEventListener('click', () => {
+document.querySelector('#mode-switcher').addEventListener('click', () => {
   document.querySelector('.calculator').classList.toggle('lightmode');
 });

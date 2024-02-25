@@ -1,120 +1,138 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   outline: 0;
-  font-family: "poppins", sans-serif;
+  border: 0;
   box-sizing: border-box;
   transition: all 0.5s ease;
 }
 
-.container {
-  width: 100%;
-  height: 100vh;
+body {
+  font-family: 'poppins', sans-serif;
+  font-size: 1rem;
+  min-height: 100vh;
   background: #e3f9ff;
+  padding-block: 5rem;
   display: grid;
-  align-items: center;
-  justify-items: center;
+  place-content: center;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.container {
+  margin-inline: 3rem;
 }
 
 .calculator {
-  width: 505px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 0 30px #000;
+  position: relative;
 }
 
-.calculator form input {
+.display-container {
+  margin: 3rem 1rem;
+}
+
+.button-container {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+[class*='-row']:not(:last-child) {
+  display: flex;
+}
+
+[class*='-row']:last-child {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+[class*='-row']:last-child > div:last-child {
+  grid-column: span 2;
+}
+
+[class*='-row'] > * {
+  display: grid;
+  place-content: center;
   box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
     5px 5px 15px rgba(0, 0, 0, 0.2);
-  border: 10px;
-  outline: 10px;
-  width: 60px;
-  height: 60px;
+  margin: 10px;
+  padding: 1.5rem 0.5rem;
   border-radius: 10px;
   cursor: pointer;
-  margin: 10px;
-  float: left;
+  flex: 1;
 }
 
-form #switch-outer-border {
-  width: 25px;
-  height: 25px;
-  position: relative;
-  top: 0px;
-  left: 460px;
-  z-index: 1;
-  border-radius: 10px;
+#mode-switcher {
+  width: 2rem;
+  height: 2rem;
+  background-color: rgb(12, 50, 52);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-input#switch-inner-border {
-  width: 19px;
-  height: 19px;
-  margin: auto;
-  position: relative;
-  top: 2.5px;
-  left: 3px;
-  z-index: -1;
+#mode-switcher::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background-color: #adb1ff;
+  border-radius: 50%;
+  z-index: -10;
 }
 
-form .display {
-  display: flex;
-  justify-content: flex-end;
+.calculator form #mode-switcher:active {
+  background: rgb(92, 232, 129);
+}
+
+.display {
   margin: 10px 0;
 }
 
 form .display input {
-  margin: 0 10px;
   height: 50px;
-  width: auto;
-  max-width: 470px;
   text-align: right;
   flex: 1;
   font-size: 45px;
   box-shadow: none;
 }
 
-form input.equal {
-  width: 145px;
-}
-
 /* dark theme */
-.calculator form .active :active {
-  background-color: grey;
-  color: yellow;
-}
-
 .calculator {
   background: #3a4452;
 }
 
-.calculator form input {
-  background: transparent;
-  color: white;
-}
-
+.calculator form input,
 .calculator form.screen {
   background: transparent;
   color: white;
 }
 
-.calculator form input.button-color {
+.calculator form .active:active {
+  background-color: rgb(181, 180, 180);
+}
+
+.calculator form .active:active input {
+  color: rgb(243, 243, 35);
+}
+
+.calculator form input.accent-color {
   color: rgb(92, 232, 129);
 }
 
-.calculator form #switch-outer-border {
-  background: rgb(12, 50, 52);
-}
-
-.calculator form #switch-outer-border:active {
-  background: rgb(92, 232, 129);
-}
-
-.calculator form input#switch-inner-border {
-  background: #adb1ff;
-}
-
 /* light theme */
-.calculator.lightmode form .active :active {
+.calculator.lightmode form .active:active {
   background-color: seagreen;
   color: yellow;
 }
@@ -124,22 +142,23 @@ form input.equal {
 }
 
 .calculator.lightmode form input {
-  background: transparent;
+  background-color: transparent;
   color: #623966;
 }
 
-.calculator.lightmode form input.button-color {
+.calculator.lightmode form input.accent-color {
   color: #0016bf;
 }
 
-.calculator.lightmode form #switch-outer-border {
-  background: rgb(203, 234, 236);
+.calculator.lightmode form #mode-switcher {
+  background-color: #e3f9ff;
 }
 
-.calculator.lightmode form #switch-outer-border:active {
-  background: rgb(92, 232, 129);
+.calculator.lightmode form #mode-switcher:active {
+  background-color: rgb(92, 232, 129);
 }
 
-.calculator.lightmode form input#switch-inner-border {
-  background: rgb(12, 50, 52);
+.calculator.lightmode form #mode-switcher::before {
+  content: '';
+  background-color: #3a4452;
 }
